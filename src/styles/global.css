@@ -1,0 +1,31 @@
+/* Reset & Base */
+/* @import url('./normalize.css'); */
+
+/* Global variables */
+:root {
+ --primary-color: #0077ff;
+ --secondary-color: #6c7692;
+ --font-main: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Universal reset */
+* {
+ margin: 0;
+ padding: 0;
+ box-sizing: border-box;
+}
+
+/* Base styles */
+body {
+ font-family: var(--font-main);
+ background-color: #f8f9fc;
+ color: #222;
+}
+
+/* Responsive text */
+h1,
+h2,
+h3 {
+ line-height: 1.2;
+ font-weight: 600;
+}

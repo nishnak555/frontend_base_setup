@@ -1,0 +1,149 @@
+/* -------------------------------------------------------
+   Modern Normalize.css (React + TypeScript friendly)
+   ------------------------------------------------------- */
+
+/* 1. Set default box sizing to border-box */
+*,
+*::before,
+*::after {
+ box-sizing: border-box;
+}
+
+/* 2. Remove default margin & padding from all elements */
+* {
+ margin: 0;
+ padding: 0;
+}
+
+/* 3. Improve text rendering */
+html {
+ -webkit-text-size-adjust: 100%;
+ /* Prevent font scaling in landscape on iOS */
+ scroll-behavior: smooth;
+}
+
+/* 4. Set body defaults */
+body {
+ line-height: 1.5;
+ font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+ font-size: 16px;
+ color: #222;
+ background-color: #fff;
+ min-height: 100vh;
+}
+
+/* 5. Remove default link underlines and colors */
+a {
+ text-decoration: none;
+ color: inherit;
+}
+
+/* 6. Make images responsive by default */
+img,
+picture,
+video,
+canvas,
+svg {
+ display: block;
+ max-width: 100%;
+}
+
+/* 7. Inherit fonts for form controls */
+input,
+button,
+textarea,
+select {
+ font: inherit;
+}
+
+/* 8. Remove animations for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+ *,
+ *::before,
+ *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+ }
+}
+
+/* 9. Remove border on images inside links */
+img {
+ border-style: none;
+}
+
+/* 10. Remove default button background in Firefox */
+button {
+ background: none;
+ border: none;
+ padding: 0;
+}
+
+/* 11. Reset list styles */
+ul,
+ol {
+ list-style: none;
+}
+
+/* 12. Reset heading font weight */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+ font-weight: 600;
+ line-height: 1.2;
+}
+
+/* 13. Prevent text overflow */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+ overflow-wrap: break-word;
+}
+
+/* 14. Reset form elements */
+input,
+textarea,
+select,
+button {
+ outline: none;
+ border: none;
+ background: transparent;
+ color: inherit;
+}
+
+/* 15. Set consistent cursor for clickable elements */
+button,
+[role="button"] {
+ cursor: pointer;
+}
+
+/* 16. Reset code and pre tags */
+code,
+pre {
+ font-family: "Source Code Pro", monospace;
+ background-color: #f3f3f3;
+ padding: 2px 4px;
+ border-radius: 4px;
+}
+
+/* 17. Hide overflow for iframe and embed by default */
+iframe,
+embed {
+ max-width: 100%;
+ border: 0;
+}
+
+/* 18. Ensure html takes full height */
+html,
+body {
+ height: 100%;
+}

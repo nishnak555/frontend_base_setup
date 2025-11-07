@@ -1,0 +1,81 @@
+.admin-layout {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Sidebar section */
+.admin-layout > .sidebar {
+  width: 260px;
+  transition: all 0.3s ease-in-out;
+  flex-shrink: 0;
+  height: 100vh;
+}
+
+/* Closed on desktop */
+.admin-layout.sidebar-closed > .sidebar {
+  width: 0;
+  overflow: hidden;
+}
+
+/* Main area */
+.admin-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.admin-main main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+  background-color: #f5f6fa;
+  box-sizing: border-box;
+}
+
+/* Mobile and Tablet View */
+@media (max-width: 992px) {
+  .admin-layout > .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+    z-index: 999;
+  }
+
+  /* Open state: slide in */
+  .admin-layout.sidebar-open > .sidebar {
+    transform: translateX(0);
+  }
+
+  /* Add overlay background */
+  .admin-layout.sidebar-open::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+  }
+
+  /* Closed: slide out */
+  .admin-layout.sidebar-closed > .sidebar {
+    transform: translateX(-100%);
+  }
+}
+
+/* Desktop collapse */
+@media (min-width: 993px) {
+  .admin-layout.sidebar-open > .sidebar {
+    width: 260px;
+  }
+
+  .admin-layout.sidebar-closed > .sidebar {
+    width: 0;
+  }
+}
