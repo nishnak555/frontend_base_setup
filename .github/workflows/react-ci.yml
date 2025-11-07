@@ -41,7 +41,6 @@ jobs:
       - name: Build React app
         run: npm run build
 
-
       # 📦 Step 8 — Upload build artifacts (optional)
       - name: Upload production build
         if: success()
