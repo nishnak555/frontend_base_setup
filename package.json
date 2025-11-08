@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://nishnak555.github.io/ecommerce-app",
+  "homepage": "https://nishnak555.github.io/frontend_base_setup",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
