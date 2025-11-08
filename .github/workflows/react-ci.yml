@@ -11,48 +11,39 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 🧩 Step 1 — Checkout code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # ⚙️ Step 2 — Setup Node.js environment
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '22.17.1'
           cache: 'npm'
 
-      # 🧹 Step 3 — Clean npm cache before install
       - name: Clear npm cache
         run: npm cache clean --force
 
-      # 📦 Step 4 — Install dependencies safely
       - name: Install dependencies
         run: |
           echo "🔍 Installing dependencies..."
           npm ci || (echo "⚠️ Lockfile mismatch detected. Regenerating..." && npm install && npm ci)
 
-      # 🧠 Step 5 — Verify lockfile consistency (optional)
       - name: Verify lockfile
         run: npm ci --dry-run
 
-      # 🏗️ Step 6 — Build React app
       - name: Build React app
         run: npm run build
 
-
-      # 📦 Step 7 — Upload production build (artifact)
       - name: Upload production build
         if: success()
         uses: actions/upload-artifact@v4
         with:
           name: react-build
-          path: build/
+          path: dist/   # ✅ updated
 
-      # 🚀 Step 8 — Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         if: success()
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+          publish_dir: ./dist   # ✅ correct for Vite

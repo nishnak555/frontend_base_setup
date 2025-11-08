@@ -12,7 +12,7 @@
     "postinstall": "patch-package",
     "clean": "rimraf node_modules package-lock.json && npm install",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
