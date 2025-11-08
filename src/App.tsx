@@ -46,7 +46,7 @@ function App() {
       },
     ],
     {
-      basename: "/", // ✅ IMPORTANT
+      basename: "/frontend_base_setup", // ✅ IMPORTANT
     }
   );
 
