@@ -9,41 +9,46 @@ import AdminLayout from "./layouts/dashboard/adminLayout";
 import Dummy from "./pages/dummy/dummy";
 
 function App() {
-  const router = createBrowserRouter([
+  const router = createBrowserRouter(
+    [
+      {
+        path: "/",
+        loader: Loader,
+        Component: Home,
+        middleware: [loggingMiddleware],
+        ErrorBoundary: HomeBoundary,
+        children: [
+          {
+            path: "",
+            middleware: [loggingMiddleware],
+          },
+        ],
+      },
+      {
+        path: "/about",
+        Component: About,
+        middleware: [loggingMiddleware],
+      },
+      {
+        path: "/login",
+        Component: Login,
+      },
+      {
+        path: "/dashboard",
+        Component: AdminLayout,
+        middleware: [loggingMiddleware],
+        children: [
+          {
+            path: "dummy",
+            Component: Dummy,
+          },
+        ],
+      },
+    ],
     {
-      path: "/",
-      loader: Loader,
-      Component: Home,
-      middleware: [loggingMiddleware],
-      ErrorBoundary: HomeBoundary,
-      children: [
-        {
-          path: "",
-          middleware: [loggingMiddleware],
-        },
-      ],
-    },
-    {
-      path: "/about",
-      Component: About,
-      middleware: [loggingMiddleware],
-    },
-    {
-      path: "/login",
-      Component: Login,
-    },
-    {
-      path: "/dashboard",
-      Component: AdminLayout,
-      middleware: [loggingMiddleware],
-      children: [
-        {
-          path: "dummy",
-          Component: Dummy,
-        },
-      ],
-    },
-  ]);
+      basename: "/frontend_base_setup", // ✅ IMPORTANT
+    }
+  );
 
   return <RouterProvider router={router} />;
 }
