@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  build_and_deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,7 +15,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # ⚙️ Step 2 — Setup Node environment
+      # ⚙️ Step 2 — Setup Node.js environment
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -27,13 +27,12 @@ jobs:
         run: npm cache clean --force
 
       # 📦 Step 4 — Install dependencies safely
-      # If lock file mismatch occurs, automatically fix it
       - name: Install dependencies
         run: |
           echo "🔍 Installing dependencies..."
           npm ci || (echo "⚠️ Lockfile mismatch detected. Regenerating..." && npm install && npm ci)
 
-      # 🧠 Step 5 — Verify lockfile consistency (optional but good practice)
+      # 🧠 Step 5 — Verify lockfile consistency (optional)
       - name: Verify lockfile
         run: npm ci --dry-run
 
@@ -41,11 +40,22 @@ jobs:
       - name: Build React app
         run: npm run build
 
+      # 🧪 Step 7 — (Optional) Run tests
+      - name: Run tests
+        run: npm test -- --watchAll=false
 
-      # 📦 Step 8 — Upload build artifacts (optional)
+      # 📦 Step 8 — Upload production build (artifact)
       - name: Upload production build
         if: success()
         uses: actions/upload-artifact@v4
         with:
           name: react-build
           path: build/
+
+      # 🚀 Step 9 — Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        if: success()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
